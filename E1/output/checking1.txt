@@ -1,0 +1,29 @@
+Código: 7BE3A
+Transmission1.txt ==> 5 veces
+10, 15, 22, 40, 56
+Transmission2.txt ==> 3 veces
+5, 11, 25
+Transmission3.txt ==> 1 veces
+30
+La subsecuencia más encontrada es: 7E3A con 4 veces en el archivo Transmisión2.txt 
+--------------
+Código:
+....
+
+==============
+Palíndromo más grande:
+Transmission1.txt ==> Posición: 12
+0010100
+----
+Transmission2.txt ==> Posición: 30
+111
+----
+Transmission3.txt ==> Posición: 7
+8FF8
+============
+Los Substring más largos son:
+T1-T2 ==> ABCDEFG
+T1-T3 ==> 11122
+T2-T3 ==> AVC
+
+
