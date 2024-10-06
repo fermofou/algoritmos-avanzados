@@ -12,3 +12,6 @@ transmission3.txt==> Posición: 351
 ----
 ============== 
 Los Substring más largos son:
+T1-T2 ==> 943A5
+T1-T3 ==> CDEC
+T2-T3 ==> 571139

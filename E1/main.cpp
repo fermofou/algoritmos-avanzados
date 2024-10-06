@@ -8,8 +8,8 @@ using namespace std;
 //Julen Hoppenstedt
 
 //Complejidad Manachers: O(n)
-vector<int> longest_palindromic_substring(const string &s) {
-    // Transform the input string to handle even-length palindromes
+vector<int> manachers(const string &s) {
+
     string t = "#";
     for (char c : s) {
         t += c;
@@ -24,7 +24,6 @@ vector<int> longest_palindromic_substring(const string &s) {
 
     for (int i = 0; i < n; i++) {
         int mirror = 2 * center - i;  
-
         if (i < right)
             P[i] = min(right - i, P[mirror]);
 
@@ -48,6 +47,102 @@ vector<int> longest_palindromic_substring(const string &s) {
 }
 
 
+//Complejidad Longest Common Substring: O(n*m)
+// string longCommSub(string text1, string text2) {
+//         int n = text1.size();
+//         int m = text2.size();
+        
+//         // matriz lcs (n+1) x (m+1)
+//         vector<vector<int>> LCS(n + 1, vector<int>(m + 1, 0));
+        
+//         int maxLength = 0, ind = 0; // ind es para ver index de palabra
+
+         
+//         for (int i = 1; i <= n; ++i) {
+//             for (int j = 1; j <= m; ++j) {
+//                 if (text1[i - 1] == text2[j - 1]) {
+//                     LCS[i][j] = LCS[i - 1][j - 1] + 1;
+//                     if (LCS[i][j] > maxLength) {
+//                         maxLength = LCS[i][j]; 
+//                         ind = i;
+//                     }
+//                 } else {
+//                     LCS[i][j] = 0; 
+//                 }
+//             }
+//         }
+
+//         // substring
+//         string lcsString = "";
+//         for (int i = ind - maxLength; i < ind; ++i) {
+//             lcsString += text1[i];
+//         }
+
+        
+//         return lcsString;
+// }
+
+string longCommSub(const string& text1, const string& text2) {
+    int n = text1.size();
+    int m = text2.size();
+    
+    // Inicializa una matriz LCS de tamaño n x m
+    vector<vector<int>> LCS(n, vector<int>(m, 0));
+    
+    int maxLength = 0;         
+    int endIndexText1 = 0;     // index final de subst, inicio = endIndexText1 - maxLength
+
+    // Para i desde 0 hasta n - 1: string1
+    for (int i = 0; i < n; ++i) {
+        if (text1[i] == text2[0]) {
+            LCS[i][0] = 1;
+            if (1 > maxLength) {
+                maxLength = 1;
+                endIndexText1 = i + 1;
+            }
+        } else {
+            LCS[i][0] = 0;
+        }
+    }
+
+    // Para j desde 0 hasta m - 1 (string2)
+    for (int j = 0; j < m; ++j) {
+        if (text1[0] == text2[j]) {
+            LCS[0][j] = 1;
+            if (1 > maxLength) {
+                maxLength = 1;
+                endIndexText1 = 1;
+            }
+        } else {
+            LCS[0][j] = 0;
+        }
+    }
+
+    // Para i desde 1 hasta n - 1 (longitud string1)
+    for (int i = 1; i < n; ++i) {
+        // Para j desde 1 hasta m - 1 (m es la longitud string2)
+        for (int j = 1; j < m; ++j) {
+            if (text1[i] == text2[j]) {
+                LCS[i][j] = LCS[i - 1][j - 1] + 1;
+                if (LCS[i][j] > maxLength) {
+                    maxLength = LCS[i][j];
+                    endIndexText1 = i + 1;
+                }
+            } else {
+                LCS[i][j] = 0;
+            }
+        }
+    }
+
+    string lcsString = "";
+    for (int i = endIndexText1 - maxLength; i < endIndexText1; ++i) {
+        lcsString += text1[i];
+    }
+
+    return lcsString;
+}
+
+
 int main(){
     vector<string> texts={"transmission1.txt","transmission2.txt","transmission3.txt"};
     vector<string> textSaved; 
@@ -63,25 +158,25 @@ int main(){
     }
     
     ofstream outFile("output\\checking.txt" ); //Creo el archivo de salida
-    //Manachers
-    string ansMan="1234";  //aqui pon lo tuyo
-    outFile << "Código: "+ansMan<< endl;
+    //kmp
+    string anskmp="1234";  //aqui pon lo tuyo
+    outFile << "Código: "+anskmp<< endl;
     outFile<<"============== \nPalíndromo más grande:" <<endl;
 
     for(int i=0;i<textSaved.size();i++){
-        vector<int> ans = longest_palindromic_substring(textSaved[i]);
+        vector<int> ans = manachers(textSaved[i]);
         outFile<<texts[i]<<"==> Posición: "<<ans[0]<<endl;
         outFile<<textSaved[i].substr(ans[0], ans[1])<<endl;
         outFile<<"----"<<endl;
         
     }
     outFile<<"============== \nLos Substring más largos son:" <<endl;
-
-    // for (const string &text : textSaved) {
- 
-    //     outFile << text << endl;  // Write each text into the output file
-    // }
-
+    
+    outFile<<"T1-T2 ==> "<<longCommSub(textSaved[0],textSaved[1])<<endl;
+    outFile<<"T1-T3 ==> "<<longCommSub(textSaved[0],textSaved[2])<<endl;
+    outFile<<"T2-T3 ==> "<<longCommSub(textSaved[1],textSaved[2])<<endl;
+    cout<<"Archivo de salida creado"<<endl;
+   
     outFile.close();   
     
     return 0;
