@@ -47,41 +47,8 @@ vector<int> manachers(const string &s) {
 }
 
 
+
 //Complejidad Longest Common Substring: O(n*m)
-// string longCommSub(string text1, string text2) {
-//         int n = text1.size();
-//         int m = text2.size();
-        
-//         // matriz lcs (n+1) x (m+1)
-//         vector<vector<int>> LCS(n + 1, vector<int>(m + 1, 0));
-        
-//         int maxLength = 0, ind = 0; // ind es para ver index de palabra
-
-         
-//         for (int i = 1; i <= n; ++i) {
-//             for (int j = 1; j <= m; ++j) {
-//                 if (text1[i - 1] == text2[j - 1]) {
-//                     LCS[i][j] = LCS[i - 1][j - 1] + 1;
-//                     if (LCS[i][j] > maxLength) {
-//                         maxLength = LCS[i][j]; 
-//                         ind = i;
-//                     }
-//                 } else {
-//                     LCS[i][j] = 0; 
-//                 }
-//             }
-//         }
-
-//         // substring
-//         string lcsString = "";
-//         for (int i = ind - maxLength; i < ind; ++i) {
-//             lcsString += text1[i];
-//         }
-
-        
-//         return lcsString;
-// }
-
 string longCommSub(const string& text1, const string& text2) {
     int n = text1.size();
     int m = text2.size();
