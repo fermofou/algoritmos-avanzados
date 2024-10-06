@@ -1,8 +1,14 @@
 Código: 1234
 ============== 
 Palíndromo más grande:
-transmission1.txt==> Posición: 
-transmission2.txt==> Posición: 
-transmission3.txt==> Posición: 
+transmission1.txt==> Posición: 75
+A2E2A
+----
+transmission2.txt==> Posición: 45
+C8F8C
+----
+transmission3.txt==> Posición: 351
+0FFFFFFF0
+----
 ============== 
 Los Substring más largos son:
