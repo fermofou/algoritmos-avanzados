@@ -115,7 +115,7 @@ int main(){
     vector<string> textSaved; 
     for (string txt : texts){ //leo los textos y guardo en textSaved
      //creo que quitare despues el folder pq en instrucciones pide q esten en misma ruta
-        ifstream file("texts\\"+txt);
+        ifstream file(txt);
         string line,t;
         while (getline(file, line)) {
             t+= line;
@@ -124,7 +124,7 @@ int main(){
         file.close();
     }
     
-    ofstream outFile("output\\checking.txt" ); //Creo el archivo de salida
+    ofstream outFile("checking.txt" ); //Creo el archivo de salida
     //kmp
     string anskmp="1234";  //aqui pon lo tuyo
     outFile << "Código: "+anskmp<< endl;
