@@ -54,22 +54,22 @@ vector<int> longest_palindromic_substring(const string &s) {
 
 
 int main(){
-    cout<<"Hello World"<<endl;
     vector<string> texts={"transmission1.txt","transmission2.txt","transmission3.txt"};
-    vector<string> textSaved; //Aqui estan los textos como variables
-    for (string txt : texts){
+    vector<string> textSaved; 
+    for (string txt : texts){ //leo los textos y guardo en textSaved
+     //creo que quitare despues el folder pq en instrucciones pide q esten en misma ruta
         ifstream file("texts\\"+txt);
         string line,t;
         while (getline(file, line)) {
             t+= line;
-        }
+        } 
         textSaved.push_back(t);
         file.close();
     }
-
-    ofstream outFile("output\\checking.txt" );
+    
+    ofstream outFile("output\\checking.txt" ); //Creo el archivo de salida
     //Manachers
-    string ansMan="1234";
+    string ansMan="1234";  //aqui pon lo tuyo
     outFile << "Código: "+ansMan<< endl;
     outFile<<"============== \nPalíndromo más grande:" <<endl;
 
