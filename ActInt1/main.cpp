@@ -256,7 +256,7 @@ int main(){
     outFile << "T1-T3 ==> " << longCommSub(textSaved[0], textSaved[2]) << endl;
     outFile << "T2-T3 ==> " << longCommSub(textSaved[1], textSaved[2]) << endl;
 
-    // cout << "Archivo de salida creado" << endl;
+    cout << "Archivo de salida creado" << endl;
 
     outFile.close();
 
