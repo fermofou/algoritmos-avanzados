@@ -36,7 +36,8 @@ vector<int> lps(string p) {
     return lps;
 }
 
-// Complejidad Manachers: O(n)
+// Complejidad de tiempo Manachers: O(n)
+// Complejidad de espacio Manachers: O(n)
 vector<int> manachers(const string &s) {
 
     string t = "#";
@@ -75,7 +76,9 @@ vector<int> manachers(const string &s) {
     return ans;
 }
 
-// Complejidad Longest Common Substring: O(n*m)
+// Complejidad Longest Common Substring de tiempo: O(n*m)
+// Complejidad Longest Common Substring de espacio: O(n*m), por mi matriz de tamaño n x m   
+
 string longCommSub(const string& text1, const string& text2) {
     int n = text1.size();
     int m = text2.size();
@@ -136,8 +139,8 @@ string longCommSub(const string& text1, const string& text2) {
     return lcsString;
 }
 
-// O(m + n) m siendo la longuitud de t y n siendo la longuitud de p
-// Espacio(m + n) m siendo la longuitud de t y n siendo la longuitud de p
+// O(m + n) m siendo la longitud de t y n siendo la longuitud de p
+// Espacio(m + n) m siendo la longitud de t y n siendo la longuitud de p
 vector<int> kmp(const string &t, const string &p) {
     vector<int> lpsArray = lps(p);
     vector<int> positions;
@@ -253,7 +256,7 @@ int main(){
     outFile << "T1-T3 ==> " << longCommSub(textSaved[0], textSaved[2]) << endl;
     outFile << "T2-T3 ==> " << longCommSub(textSaved[1], textSaved[2]) << endl;
 
-    cout << "Archivo de salida creado" << endl;
+    // cout << "Archivo de salida creado" << endl;
 
     outFile.close();
 
