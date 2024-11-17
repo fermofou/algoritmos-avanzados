@@ -4,3 +4,5 @@ c_cpp_properties.json
 launch.json
 settings.json
 *.pdf
+
+test.cpp
