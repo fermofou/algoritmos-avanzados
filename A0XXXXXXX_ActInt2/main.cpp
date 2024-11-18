@@ -354,6 +354,22 @@ pair<int, vector<string>> tspCentrales(int matAdj[MAX][MAX], int n, const vector
     return {costoOptimo, rutaOptima};
 }
 
+string coloniaMasCercana(colonia nuevaColonia, const vector<colonia>& colonias) {
+    if (colonias.size() == 0) {
+        return "nuevaColonia";
+    }
+
+    pair<string, int> coloniaMasCercana = {"", INT_MAX};
+
+    for (const auto& c : colonias) {
+        if (coloniaMasCercana.second > getDistancia(nuevaColonia, c)) {
+            coloniaMasCercana = {c.nombre, getDistancia(nuevaColonia, c)};
+        }
+    }
+
+    return coloniaMasCercana.first;
+}
+
 int main() {
     int n, m, k, q;
     cin >> n >> m >> k >> q;
@@ -468,7 +484,13 @@ int main() {
     out << "-------------------" << endl;
 
     // Pregunta 4
+    out << "4 - Conexión de nuevas colonias." << endl;
 
+    for (int i = 0; i < nuevasColonias.size(); i++) {
+        out << nuevasColonias[i].nombre << " debe conectarse con " << coloniaMasCercana(nuevasColonias[i], colonias) << endl << endl;
+    }
+
+    out << "-------------------" << endl;
 
     out.close();
     return 0;

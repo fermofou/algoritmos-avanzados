@@ -19,3 +19,7 @@ La Ruta Óptima tiene un costo total de: 123
 No se encontró una solución factible.
 
 -------------------
+4 - Conexión de nuevas colonias.
+Independencia debe conectarse con Purisima
+Roble debe conectarse con AltaVista
+-------------------
