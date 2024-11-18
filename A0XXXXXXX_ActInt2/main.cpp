@@ -28,10 +28,17 @@ struct colonia {
         this->y = 0;
     }
 
-    colonia(string _nombre, int _x, int _y, bool _central) {
+    colonia(string _nombre, int _x, int _y, int _central) {
         this->nombre = _nombre;
         this->x = _x;
         this->y = _y;
+        if(_central==0){
+            this->central=false;
+        }else{
+            this->central=true;
+        }
+        
+
     }
 };
 
@@ -128,7 +135,7 @@ int main() {
         string nombre;
         int x, y, central;
         cin >> nombre >> x >> y >> central;
-        colonias[i] = colonia(nombre, x, y, central);
+        colonias[i] = colonia(nombre, x, y,central);
         indiceColonias[nombre] = i;
     }
     
