@@ -127,7 +127,7 @@ struct Graph {
         }
         return mstEdges;
     }
-
+    //O(n^2)
     void iniciaMat(int matAdj[MAX][MAX]) {
         for (int i = 0; i < MAX; i++) {
             matAdj[i][i] = 0;
@@ -169,6 +169,7 @@ struct tspNode {
     }
 };
 
+//O(N^2)
 void calculaCostoPosible(tspNode& nodoActual, int matAdj[MAX][MAX], int n) {
     nodoActual.costoPos = nodoActual.costoAcum;
 
@@ -188,6 +189,7 @@ void calculaCostoPosible(tspNode& nodoActual, int matAdj[MAX][MAX], int n) {
     }
 }
 
+//O(2^n)
 pair<int, vector<string>> tsp(int matAdj[MAX][MAX], int n, const vector<colonia>& colonias) {
     int costoOptimo = INF;
     vector<string> rutaOptima;
@@ -326,6 +328,7 @@ vector<int> reconstruirCamino(int start, int end, const vector<vector<int>>& rut
     return path;
 }
 
+//O(N), no use CPP CLosest pair pq uno siempre es fijo
 string coloniaMasCercana(colonia nuevaColonia, const vector<colonia>& colonias) {
     if (colonias.size() == 0) {
         return "nuevaColonia";
@@ -349,7 +352,7 @@ int main() {
     unordered_map<string, int> indiceColonias; //para encontrar rapido por nombre indice
     Graph g(n);
     
-    // Leer colonias
+    // Leer colonias  O(N)
     for (int i = 0; i < n; ++i) {
         string nombre;
         int x, y, central;
@@ -358,7 +361,7 @@ int main() {
         indiceColonias[nombre] = i;
     }
     
-    // conexiones existentes
+    // conexiones existentes O(M)
     for (int i = 0; i < m; ++i) {
         string uName, vName;
         int cost;
@@ -366,16 +369,16 @@ int main() {
         g.addEdge(indiceColonias[uName], indiceColonias[vName], cost);
     }
     
-    //  conexiones con nuevo cableado 
+    //  conexiones con nuevo cableado  O(k*m)
     string uName, vName, nombre;
     for (int i = 0; i < k; ++i) {
         cin >> uName >> vName;
         int costo = getDistancia(colonias[indiceColonias[uName]], colonias[indiceColonias[vName]]);
 
-        // Buscar si ya existe la conexión
+        // Buscar la conexión y actualizar 
         bool found = false;
         for (auto &edge : g.edges) {
-            // Si la conexión ya existe, actualizamos el `isNew` a true
+            //  `isNew` a true
             if ((edge.u == indiceColonias[uName] && edge.v == indiceColonias[vName]) ||
                 (edge.u == indiceColonias[vName] && edge.v == indiceColonias[uName])) {
                 edge.isNew = true;
@@ -389,7 +392,7 @@ int main() {
         // }
     }
 
-    // Leer nuevas colonias
+    // Leer nuevas colonias O(q)
     vector<colonia> nuevasColonias(q);
     for (int i = 0; i < q; ++i) {
         int x, y;
@@ -416,7 +419,7 @@ int main() {
     out << endl << "Costo Total: " << costoTotal<<endl;
     out<<endl<<"-------------------"<<endl;
 
-    //pregunta2
+    //pregunta2 :tsp
     out << "2 - La ruta óptima." << endl << endl;
 
     pair<int, vector<string>> resultNoCentrales = tsp(g.matAdj, n, colonias);
@@ -436,7 +439,7 @@ int main() {
     out << "-------------------" << endl;
 
 
-    // // Pregunta 3
+    // // Pregunta 3  Floyd
     out << "3 - Caminos más cortos entre centrales." << endl << endl;
 
     pair<vector<vector<int>>, vector<vector<int>>> conexiones = floyd(g.matAdj, n);
@@ -463,7 +466,7 @@ int main() {
 
     out << endl << "-------------------" << endl;
 
-    // Pregunta 4
+    // Pregunta 4  CLosestPoint
     out << "4 - Conexión de nuevas colonias." << endl;
 
     for (int i = 0; i < nuevasColonias.size(); i++) {
