@@ -3,6 +3,6 @@
 c_cpp_properties.json
 launch.json
 settings.json
-*.pdf
+.zip
 
 test.cpp

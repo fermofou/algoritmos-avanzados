@@ -328,10 +328,15 @@ vector<int> reconstruirCamino(int start, int end, const vector<vector<int>>& rut
     return path;
 }
 
+bool compareX(const colonia &a, const colonia &b) {
+    return a.x < b.x;
+}
+
+
 //O(N), no use CPP CLosest pair pq uno siempre es fijo, y si quiero sortear sera mas tardado que solo O(N) 
 string coloniaMasCercana(colonia nuevaColonia, const vector<colonia>& colonias) {
     if (colonias.size() == 0) {
-        return "nuevaColonia";
+        return "ninguna, esta vacio";
     }
 
     pair<string, int> coloniaMasCercana = {"", INT_MAX};
@@ -340,6 +345,7 @@ string coloniaMasCercana(colonia nuevaColonia, const vector<colonia>& colonias) 
         if (coloniaMasCercana.second > getDistancia(nuevaColonia, c)) {
             coloniaMasCercana = {c.nombre, getDistancia(nuevaColonia, c)};
         }
+        
     }
 
     return coloniaMasCercana.first;
