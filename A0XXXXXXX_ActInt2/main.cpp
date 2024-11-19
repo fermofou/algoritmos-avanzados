@@ -12,9 +12,10 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
-#include <limits>
+#include <climits>
 #include <unordered_map>
 #include <fstream>
+#include <queue>
 
 #define MAX 1000
 #define INF INT_MAX
@@ -46,7 +47,7 @@ struct colonia {
 
 struct Edge {
     int u, v, cost;
-    bool isNew; // Identifica si es una conexión existente con nuevo cableado
+    bool isNew; //  es una conexión existente con nuevo cableado
 
     Edge(int _u, int _v, int _cost, bool _isNew){
         this->u=_u;
@@ -109,7 +110,9 @@ struct Graph {
         matAdj[v + 1][u + 1] = cost;
     }
 
+    //O(ElogE) , E es tamaño de edges
     vector<Edge> KruskalMST() {
+        
         sort(edges.begin(), edges.end(), [](Edge a, Edge b) { return a.cost < b.cost; });
         DisjointSets ds(V);
 
@@ -146,7 +149,6 @@ struct Graph {
     }
 };
 
-// distancia
 int getDistancia(const colonia &a, const colonia &b) {
     return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
@@ -304,6 +306,7 @@ pair<vector<vector<int>>, vector<vector<int>>> floyd(int matAdj[MAX][MAX], int n
     return {dist, rutas};
 }
 
+
 vector<int> reconstruirCamino(int start, int end, const vector<vector<int>>& rutas) {
     vector<int> path;
 
@@ -395,7 +398,7 @@ int main() {
     }
 
     // Punto 1: Cableado óptimo
-    ofstream out("output.txt");
+    ofstream out("checking2.txt");
     out <<"-------------------"<<endl;
     out << "1 - Cableado óptimo de nueva conexión.\n"<<endl; //doble espacio creo
     
