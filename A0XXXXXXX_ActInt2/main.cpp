@@ -467,13 +467,13 @@ int main() {
     out << endl << "-------------------" << endl;
 
     // Pregunta 4  alternativa de CLosestPoint
-    out << "4 - Conexión de nuevas colonias." << endl;
+    out << "4 - Conexión de nuevas colonias." << endl << endl;
 
     for (int i = 0; i < nuevasColonias.size(); i++) {
-        out << nuevasColonias[i].nombre << " debe conectarse con " << coloniaMasCercana(nuevasColonias[i], colonias) << endl << endl;
+        out << nuevasColonias[i].nombre << " debe conectarse con " << coloniaMasCercana(nuevasColonias[i], colonias) << endl;
     }
 
-    out << "-------------------" << endl;
+    out << endl << "-------------------" << endl;
 
     out.close();
     return 0;
