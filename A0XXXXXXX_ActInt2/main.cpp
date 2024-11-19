@@ -328,7 +328,7 @@ vector<int> reconstruirCamino(int start, int end, const vector<vector<int>>& rut
     return path;
 }
 
-//O(N), no use CPP CLosest pair pq uno siempre es fijo
+//O(N), no use CPP CLosest pair pq uno siempre es fijo, y si quiero sortear sera mas tardado que solo O(N) 
 string coloniaMasCercana(colonia nuevaColonia, const vector<colonia>& colonias) {
     if (colonias.size() == 0) {
         return "nuevaColonia";
@@ -466,7 +466,7 @@ int main() {
 
     out << endl << "-------------------" << endl;
 
-    // Pregunta 4  CLosestPoint
+    // Pregunta 4  alternativa de CLosestPoint
     out << "4 - Conexión de nuevas colonias." << endl;
 
     for (int i = 0; i < nuevasColonias.size(); i++) {
